@@ -1,4 +1,4 @@
-export const inBrowser = typeof window !== 'undefined'
+export const inBrowser = typeof window !== 'undefined';
 
 export function isAndroid(): boolean {
   /* istanbul ignore next */

@@ -5,5 +5,5 @@ export interface AddressInfo {
   address: string;
   ads: string;
   city: [string, string, string];
-  isDefault: boolean
+  isDefault: boolean;
 }

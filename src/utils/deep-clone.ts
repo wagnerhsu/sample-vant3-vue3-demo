@@ -4,7 +4,6 @@ type ObjectIndex = Record<string, any>;
 
 const { hasOwnProperty } = Object.prototype;
 
-
 function assignKey(to: ObjectIndex, from: ObjectIndex, key: string) {
   const val = from[key];
 
@@ -24,7 +23,6 @@ function deepAssign(to: ObjectIndex, from: ObjectIndex): ObjectIndex {
 
   return to;
 }
-
 
 export function deepClone(obj: Record<string, any>): Record<string, any> {
   if (Array.isArray(obj)) {

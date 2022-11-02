@@ -1,6 +1,9 @@
 <template>
   <div class="home text-center">
-    <header v-pin:[direction]="pinPadding" style="width: 100%; text-align: center" class="max640">
+    <header
+      v-pin:[direction]="pinPadding"
+      style="width: 100%; text-align: center"
+      class="max640">
       <p>
         Stick me
         <span class="text-color">{{ pinPadding }}</span>
@@ -21,49 +24,54 @@
     </div>
     <div class="mg-b20 flex flex-center">
       自定义指令：
-      <input type="range" min="0" max="500" v-model="pinPadding" style="z-index: 9" />
+      <input
+        type="range"
+        min="0"
+        max="500"
+        v-model="pinPadding"
+        style="z-index: 9" />
     </div>
     <Button type="success" @click="showToast">更改字体颜色</Button>
   </div>
 </template>
 
 <script lang="ts">
-import dayjs from "dayjs";
-import { defineComponent } from "vue";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
-import { Button, Dialog, Toast } from "vant";
+import dayjs from 'dayjs';
+import { defineComponent } from 'vue';
+import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import { Button, Dialog, Toast } from 'vant';
 
 export default defineComponent({
-  name: "HomePgae",
+  name: 'HomePgae',
   components: {
     HelloWorld,
     Button,
   },
   data() {
     return {
-      direction: "top",
+      direction: 'top',
       pinPadding: 0,
-      time: "",
+      time: '',
       timer: 0,
-      color: "red",
-      city: ["", "", ""],
+      color: 'red',
+      city: ['', '', ''],
     };
   },
   methods: {
     showToast() {
-      Toast("字体颜色已改蓝色");
-      this.color = "blue";
+      Toast('字体颜色已改蓝色');
+      this.color = 'blue';
     },
     handleClick() {
       Dialog({
-        title: "标题",
-        message: "这是一个全局按钮组件",
+        title: '标题',
+        message: '这是一个全局按钮组件',
       });
     },
     initTime() {
-      this.time = dayjs().format("YYYY-MM-DD HH:mm:ss");
+      this.time = dayjs().format('YYYY-MM-DD HH:mm:ss');
       this.timer = setInterval(() => {
-        this.time = dayjs().format("YYYY-MM-DD HH:mm:ss");
+        this.time = dayjs().format('YYYY-MM-DD HH:mm:ss');
       }, 1000);
     },
   },

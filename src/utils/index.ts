@@ -1,5 +1,5 @@
-type StringObj = { [k: string]: string }
-type UrlParamBack = null | string | StringObj
+type StringObj = { [k: string]: string };
+type UrlParamBack = null | string | StringObj;
 
 /**
  * 获取数据类型
@@ -7,7 +7,7 @@ type UrlParamBack = null | string | StringObj
  * @return "String","Object","Array"...
  */
 export function getType(value: any) {
-  return Object.prototype.toString.call(value).slice(8, -1)
+  return Object.prototype.toString.call(value).slice(8, -1);
 }
 
 export function isDef(val: unknown): boolean {
@@ -31,19 +31,20 @@ export function isString(val: unknown): boolean {
  * @param {String} name 参数名称(不传则返回一个全部参数对象)
  */
 export function getUrlParam(name = ''): UrlParamBack {
-  const href = window.location.href, i = href.indexOf("?");
+  const href = window.location.href,
+    i = href.indexOf('?');
   if (i < 0) return null;
   const str = href.slice(i);
   if (!str) return null;
   const arr = str.match(/([^?&=#]+)=([^?&=#/]*)/g);
   if (!arr) return null;
-  const obj: StringObj = {}
-  arr.forEach(v => {
+  const obj: StringObj = {};
+  arr.forEach((v) => {
     const temp = v.split('=');
     if (temp.length > 0) {
       obj[temp[0]] = temp[1];
     }
-  })
-  if (name) return obj[name]
-  return obj
+  });
+  if (name) return obj[name];
+  return obj;
 }

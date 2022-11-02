@@ -8,45 +8,47 @@ export default defineComponent({
     modelValue: {
       type: Array,
       default: () => [],
-    }
+    },
   },
   setup(props, { emit }) {
-    const showPicker = ref(false)
-    const valuesArr = ref(['', '', ''])
-    const adsPicker = ref()
+    const showPicker = ref(false);
+    const valuesArr = ref(['', '', '']);
+    const adsPicker = ref();
     const columns = reactive([
       {
-        values: ['']
+        values: [''],
       },
       {
-        values: ['']
+        values: [''],
       },
       {
-        values: ['']
-      }
-    ])
+        values: [''],
+      },
+    ]);
 
     function getChildAddress(province: string, city?: string): string[] {
       if (!province) return [];
-      let provinceInfo = null, provinceList = [];
+      let provinceInfo = null,
+        provinceList = [];
       for (const item of CITYS) {
         if (item.n === province) {
           provinceInfo = item;
-          break
+          break;
         }
       }
-      provinceList = provinceInfo ? provinceInfo.c.map(v => v.n) : []
-      if (!city) return provinceList
-      let allCity = null, cityList = []
-      if (!provinceInfo) return []
+      provinceList = provinceInfo ? provinceInfo.c.map((v) => v.n) : [];
+      if (!city) return provinceList;
+      let allCity = null,
+        cityList = [];
+      if (!provinceInfo) return [];
       for (const item of provinceInfo.c) {
         if (item.n === city) {
           allCity = item;
-          break
+          break;
         }
       }
-      cityList = allCity ? allCity.c.map(v => v.n) : [];
-      return cityList
+      cityList = allCity ? allCity.c.map((v) => v.n) : [];
+      return cityList;
     }
 
     function onChange(value: ['', '', '']) {
@@ -70,29 +72,29 @@ export default defineComponent({
 
     function confirm() {
       showPicker.value = false;
-      emit('close', valuesArr.value)
+      emit('close', valuesArr.value);
       emit('update:modelValue', valuesArr.value);
     }
     function cancel() {
       showPicker.value = false;
-      emit('close', valuesArr.value)
+      emit('close', valuesArr.value);
     }
 
     function open() {
-      showPicker.value = true
+      showPicker.value = true;
     }
 
     function initLocalCitys() {
-      const province = CITYS.map(v => v.n);
-      const city = getChildAddress(province[0])
-      const area = getChildAddress(province[0], city[0])
+      const province = CITYS.map((v) => v.n);
+      const city = getChildAddress(province[0]);
+      const area = getChildAddress(province[0], city[0]);
       columns[0].values = province;
       columns[1].values = city;
       columns[2].values = area;
       valuesArr.value = [province[0], city[0], area[0]];
     }
 
-    initLocalCitys()
+    initLocalCitys();
 
     useExpose({ open, close });
 
@@ -108,7 +110,6 @@ export default defineComponent({
           onConfirm={confirm}
         />
       </Popup>
-    )
-  }
-})
-
+    );
+  },
+});

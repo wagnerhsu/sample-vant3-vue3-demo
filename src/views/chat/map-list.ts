@@ -1,4 +1,4 @@
-import { QuestionList, AnswerList, MapList } from "./chat"
+import { QuestionList, AnswerList, MapList } from './chat';
 
 export const questionList: QuestionList = {
   Q1: '<p>这是第1个问题<span class="cred">哈哈</span>自定义html</p>',
@@ -10,7 +10,7 @@ export const questionList: QuestionList = {
   Q7: '这是第7个问题第7个第7个',
   Q8: '问题结束',
   Q9: '结束语',
-}
+};
 
 export const answerList: AnswerList = {
   A1: '这是第1个回答选项',
@@ -28,8 +28,8 @@ export const answerList: AnswerList = {
   A13: '这是第13个回答选项答选项答选项答选项',
   A14: '这是第14个回答选项',
   A15: '这是第15个回答选项答选项',
-  A16: '这是第16个回答选项'
-}
+  A16: '这是第16个回答选项',
+};
 
 export const mapList: MapList = {
   Q1: {
@@ -68,5 +68,5 @@ export const mapList: MapList = {
     A12: 'Q7',
   },
   Q7: 'Q8',
-  Q8: 'Q9'
-}
+  Q8: 'Q9',
+};

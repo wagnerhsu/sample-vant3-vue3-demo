@@ -3,14 +3,21 @@
     <!-- 滚动号码 -->
     <div class="luckdraw-scroll">
       <ul class="bg-scroll">
-        <li v-for="(item, i) in list" :key="i" :class="{ 'anim': animate && i == 0 }">
+        <li
+          v-for="(item, i) in list"
+          :key="i"
+          :class="{ anim: animate && i == 0 }">
           <span class="lkq-name">{{ item.phone }}</span>
         </li>
       </ul>
     </div>
     <!-- 抽奖弹窗 -->
     <div class="turntable">
-      <svg class="bulb svelte-ecndpu" viewBox="-6 -6 316 316" fill="currentColor" fill-rule="evenodd">
+      <svg
+        class="bulb svelte-ecndpu"
+        viewBox="-6 -6 316 316"
+        fill="currentColor"
+        fill-rule="evenodd">
         <g class="bulb-1 svelte-ecndpu">
           <circle cx="10" cy="10" r="4" />
           <circle cx="78" cy="4" r="4" />
@@ -51,9 +58,14 @@
           v-for="(item, key) in awardList"
           :key="item.id"
           class="awards-item"
-          :class="{ 'awards-item-draw': key === 4, 'run-item': item.runId === current }"
-        >
-          <div v-if="key === 4" @click="handleStart" class="draw-btn svelte-ecndpu">
+          :class="{
+            'awards-item-draw': key === 4,
+            'run-item': item.runId === current,
+          }">
+          <div
+            v-if="key === 4"
+            @click="handleStart"
+            class="draw-btn svelte-ecndpu">
             <span class="draw-btn-text">点击抽奖</span>
           </div>
           <div v-else>{{ item.name }}</div>
@@ -64,7 +76,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, reactive, computed, onMounted, nextTick } from "vue";
+import {
+  defineComponent,
+  ref,
+  reactive,
+  computed,
+  onMounted,
+  nextTick,
+} from 'vue';
 
 interface AwardTypes {
   id: number;
@@ -73,7 +92,7 @@ interface AwardTypes {
 }
 
 export default defineComponent({
-  name: "LuckDraw",
+  name: 'LuckDraw',
   setup() {
     const initSpeed = 200, // 初始速度
       diff = 20, // 速度变化的值，值越大，变化地越快
@@ -89,13 +108,13 @@ export default defineComponent({
       list = reactive([
         // 中奖号码
         {
-          phone: "186****2336抽中0元话费",
+          phone: '186****2336抽中0元话费',
         },
         {
-          phone: "166****2336抽中1元话费",
+          phone: '166****2336抽中1元话费',
         },
         {
-          phone: "156****2336抽中2元话费",
+          phone: '156****2336抽中2元话费',
         },
       ]),
       awards = reactive([
@@ -103,47 +122,47 @@ export default defineComponent({
         {
           id: 1,
           runId: 0,
-          name: "潘多拉音箱",
+          name: '潘多拉音箱',
         },
         {
           id: 2,
           runId: 1,
-          name: "小酷M1耳机",
+          name: '小酷M1耳机',
         },
         {
           id: 3,
           runId: 2,
-          name: "酷狗VIP会员",
+          name: '酷狗VIP会员',
         },
         {
           id: 4,
           runId: 7,
-          name: "8元话费",
+          name: '8元话费',
         },
         {
           id: 5,
           runId: 3,
-          name: "12元话费",
+          name: '12元话费',
         },
         {
           id: 6,
           runId: 6,
-          name: "谢谢参与1",
+          name: '谢谢参与1',
         },
         {
           id: 7,
           runId: 5,
-          name: "4元话费",
+          name: '4元话费',
         },
         {
           id: 8,
           runId: 4,
-          name: "谢谢参与2",
+          name: '谢谢参与2',
         },
       ]),
       awardList = computed<typeof awards>(() => {
         const newArr = JSON.parse(JSON.stringify(awards));
-        newArr.splice(4, 0, { name: "drawBtn" });
+        newArr.splice(4, 0, { name: 'drawBtn' });
         return newArr;
       });
     const scroll = () => {
@@ -161,7 +180,7 @@ export default defineComponent({
         if (current.value > 7) current.value = 0;
         // 若抽中的奖品id存在，并且转动时间大于2.5秒后，则开始减速转动
         if (award?.id && (Date.now() - time) / 1000 > minRotateTime) {
-          console.log("奖品出来了");
+          console.log('奖品出来了');
           speed += diff; // 转动减速
           // 若转动时间超过5秒，等到当前格子是对应奖品id数组，则停下来
           if (
@@ -196,14 +215,14 @@ export default defineComponent({
         const awardId = Math.ceil(Math.random() * 8); //随机奖品
         const getAward = awards.find((v) => v.id === awardId);
         if (getAward) award = getAward;
-        console.log("返回的抽奖结果是", award);
+        console.log('返回的抽奖结果是', award);
       }, 2000);
       move();
     };
     const handleStart = () => {
       // 开始抽奖
       if (isRuningLucky) {
-        console.log("正在抽奖中...");
+        console.log('正在抽奖中...');
         return;
       }
       if (isNaN(Number(initSpeed))) {
@@ -214,7 +233,7 @@ export default defineComponent({
       isRuningLucky = true;
       time = Date.now();
       drawAward();
-      console.log("开始抽奖");
+      console.log('开始抽奖');
       return;
     };
 
@@ -231,7 +250,7 @@ export default defineComponent({
       handleStart,
     };
   },
-})
+});
 </script>
 
 <style lang="stylus" scoped>

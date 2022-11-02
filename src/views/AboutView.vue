@@ -1,6 +1,8 @@
 <template>
   <div ref="root" class="text-center">
-    <NoticeBar left-icon="volume-o" text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。" />
+    <NoticeBar
+      left-icon="volume-o"
+      text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。" />
     <p class="mg20">This is a root element</p>
     <div class="flex flex-column">
       <div class="flex flex-center mg-t10">
@@ -36,19 +38,19 @@
 </template>
 
 <script lang="ts" setup>
-import dayjs from "dayjs";
-import { ref, reactive, onMounted } from "vue";
-import { Button, Step, Steps, NoticeBar } from "vant";
+import dayjs from 'dayjs';
+import { ref, reactive, onMounted } from 'vue';
+import { Button, Step, Steps, NoticeBar } from 'vant';
 
 const root = ref();
 const nameinput = ref();
-const twoNow = dayjs().subtract(2, "day").format("YYYY-MM-DD HH:mm:ss");
-const now = dayjs().format("YYYY-MM-DD HH:mm:ss");
-const now2 = dayjs().add(2, "day").format("YYYY-MM-DD HH:mm:ss");
+const twoNow = dayjs().subtract(2, 'day').format('YYYY-MM-DD HH:mm:ss');
+const now = dayjs().format('YYYY-MM-DD HH:mm:ss');
+const now2 = dayjs().add(2, 'day').format('YYYY-MM-DD HH:mm:ss');
 const formData = reactive({
-  name: "",
-  phone: "",
-  code: "",
+  name: '',
+  phone: '',
+  code: '',
 });
 
 onMounted(() => {
@@ -57,8 +59,8 @@ onMounted(() => {
 
 const insertName = () => {
   const index = (nameinput.value as HTMLInputElement).selectionStart;
-  if (typeof index !== "number") return;
+  if (typeof index !== 'number') return;
   formData.name =
-    formData.name.slice(0, index) + "哈哈" + formData.name.slice(index);
-}
+    formData.name.slice(0, index) + '哈哈' + formData.name.slice(index);
+};
 </script>

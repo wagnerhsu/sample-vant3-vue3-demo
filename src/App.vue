@@ -15,19 +15,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import { Tabbar, TabbarItem } from "vant";
+import { defineComponent } from 'vue';
+import { Tabbar, TabbarItem } from 'vant';
 
 export default defineComponent({
-  name: "App",
+  name: 'App',
   components: {
     Tabbar,
     TabbarItem,
   },
   computed: {
     showFooter() {
-      return this.$route.path.split("/").length < 3;
+      return this.$route.path.split('/').length < 3;
     },
-  }
-})
+  },
+});
 </script>

@@ -1,5 +1,3 @@
-import useMainStore from './modules/main'
+import useMainStore from './modules/main';
 
-export {
-  useMainStore
-}
+export { useMainStore };
